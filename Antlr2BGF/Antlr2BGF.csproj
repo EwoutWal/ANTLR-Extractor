@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="antlr4 -Dlanguage=CSharp .\AntlrParser\ANTLRv4Lexer.g4 &amp;&amp; antlr4 -visitor -Dlanguage=CSharp .\AntlrParser\ANTLRv4Parser.g4" />
+  </Target>
+
+</Project>

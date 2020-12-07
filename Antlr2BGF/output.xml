@@ -1,0 +1,1 @@
+﻿<?xml version="1.0" encoding="utf-8"?><bgf><grammar name="ambiguity"><production fragment="False"><terminal>r</terminal><expression><expression><nonterminal>ID</nonterminal></expression></expression></production><production fragment="False"><nonterminal>ID</nonterminal><expression><expression><charset>a-z</charset></expression></expression></production></grammar></bgf>
