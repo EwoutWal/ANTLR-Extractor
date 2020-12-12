@@ -44,7 +44,7 @@
                 }
 
                 fileNames.Add(name);
-                File.WriteAllText($"C:\\Users\\Ewout van der Wal\\Documents\\ANTLR Extractor\\Github Scraper\\Github Grammars\\{name}.g4", contents, Encoding.UTF8);
+                File.WriteAllText($"C:\\Users\\Ewout van der Wal\\Documents\\ANTLR Extractor\\Github Scraper\\Github Grammars\\{name}.g4", contents, new UTF8Encoding(false));
                 Console.WriteLine(" --- Done");
                 item++;
             }
