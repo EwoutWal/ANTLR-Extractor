@@ -1,2 +1,7 @@
-/bin
-/.vs
+**/.vs/**
+
+**/bin/**
+**/obj/**
+
+/Github Scraper/node_modules
+/Github Scraper/Github Grammars
