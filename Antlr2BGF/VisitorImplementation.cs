@@ -1,6 +1,5 @@
 ﻿namespace Antlr2BGF
 {
-    using System;
     using System.Linq;
     using System.Xml;
     using Antlr4.Runtime.Tree;
@@ -1311,22 +1310,19 @@
             var literal = context.STRING_LITERAL();
             var token = context.TOKEN_REF();
             var options = context.elementOptions();
-            string terminalType;
-            string tokenString;
+            var terminalType = "";
+            var tokenString = "";
 
             if (literal != null)
             {
                 terminalType = "terminal";
                 tokenString = GetLiteral(literal);
             }
-            else if (token != null)
+            
+            if (token != null)
             {
                 terminalType = "nonterminal";
                 tokenString = token.GetText();
-            }
-            else
-            {
-                throw new ParseException();
             }
 
             this.XmlWriter.WriteStartElement(terminalType);
@@ -1391,6 +1387,7 @@
 
         private static string GetLiteral(ITerminalNode node)
         {
+            // TODO: Fix the case with one single quote as input
             return node.GetText().Trim('\'');
         }
     }
