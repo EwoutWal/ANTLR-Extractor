@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="antlr4 -Dlanguage=CSharp .\AntlrParser\ANTLRv4Lexer.g4 &amp;&amp; antlr4 -visitor -Dlanguage=CSharp .\AntlrParser\ANTLRv4Parser.g4" />
+    <Exec Command="antlr4 -Dlanguage=CSharp .\AntlrParser\ANTLRv4Lexer.g4 &amp;&amp; antlr4 -visitor -no-listener -Dlanguage=CSharp .\AntlrParser\ANTLRv4Parser.g4" />
   </Target>
 
 </Project>
