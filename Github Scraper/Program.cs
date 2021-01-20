@@ -10,9 +10,22 @@
 
     public class Program
     {
+        // This program was written for Windows, Linux users will want to change the line endings from \r\n to \n and change the path separator to /
         public static void Main(string[] args)
         {
-            var lines = File.ReadAllLines(@"C:\Users\Ewout van der Wal\Documents\ANTLR Extractor\Github Scraper\git-urls-normalized.txt");
+            GetAllFileNames();
+        }
+
+        private static void GetAllFileNames()
+        {
+            var names = Directory.EnumerateFiles(@".\..\..\..\Github Grammars\").Select(fn => fn.Split('\\').Last()).ToList();
+            File.WriteAllText(@".\..\..\..\names.txt", string.Join("\r\n", names));
+        }
+
+        private static void DownloadAll()
+        {
+            var lines = File.ReadAllLines(
+                @".\..\..\..\git-urls-normalized.txt");
             var item = 357;
             lines = lines.Skip(item).ToArray();
             var fileNames = new List<string>();
@@ -24,7 +37,9 @@
 
                 try
                 {
-                    var nameLine = contents.Split("\n").Select(l => l.Trim(' ')).First(l => l.StartsWith("parser") || l.StartsWith("lexer") || l.StartsWith("grammar")).Split(';').First();
+                    var nameLine = contents.Split("\n").Select(l => l.Trim(' '))
+                        .First(l => l.StartsWith("parser") || l.StartsWith("lexer") || l.StartsWith("grammar")).Split(';')
+                        .First();
                     name = nameLine.Trim(' ').Split(" ").Last().Trim('\r').Trim(';');
                 }
                 catch (InvalidOperationException e)
@@ -44,7 +59,9 @@
                 }
 
                 fileNames.Add(name);
-                File.WriteAllText($"C:\\Users\\Ewout van der Wal\\Documents\\ANTLR Extractor\\Github Scraper\\Github Grammars\\{name}.g4", contents, new UTF8Encoding(false));
+                File.WriteAllText(
+                    $@".\..\..\..\Github Grammars\{name}.g4",
+                    contents, new UTF8Encoding(false));
                 Console.WriteLine(" --- Done");
                 item++;
             }
@@ -53,7 +70,7 @@
         private static GithubObject Get(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Headers[HttpRequestHeader.Authorization] = "token 1a8cee937d5b64222dbe5c66d21d6784e4d6d1aa";
+            request.Headers[HttpRequestHeader.Authorization] = "token ";
             request.Headers[HttpRequestHeader.UserAgent] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:83.0) Gecko/20100101 Firefox/83.0";
             request.AutomaticDecompression = DecompressionMethods.GZip;
 

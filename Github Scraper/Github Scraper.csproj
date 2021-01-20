@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="Github Grammars\" />
+    <Folder Include="Github Grammars\_out\" />
   </ItemGroup>
 
 </Project>

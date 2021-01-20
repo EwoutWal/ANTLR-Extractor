@@ -11,7 +11,7 @@ require(["axios"], () => {
     async function getCodeFiles(){
         for (var page = 31; page < 35; page += 1){
             const url = `https://api.github.com/search/code?q=grammar\+extension:g4\&page=${page}`;
-            await axios.get(url, { headers: { Authorization: 'token 1a8cee937d5b64222dbe5c66d21d6784e4d6d1aa' } }).then(res => setResult(res.data, page)).catch();
+            await axios.get(url, { headers: { Authorization: 'token #INSERT_GITHUB_TOKEN' } }).then(res => setResult(res.data, page)).catch();
         }
     }
     
